@@ -1,0 +1,9 @@
+﻿@model DateTime?
+
+@((@Model != null) ? Model.Value.ToString("dd/MM/yyyy") : "{n/a}" )
+
+
+
+@*@Model.ToString("dd/MM/yyyy").Replace('-', '/')*@
+
+

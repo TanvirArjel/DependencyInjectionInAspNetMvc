@@ -1,0 +1,3 @@
+﻿@model DateTime?
+@Html.TextBox("", Model.HasValue? Model.Value.ToString("dd/MM/yyyy").Replace('-', '/') : "", new { @class = "form-control date-picker" })
+
