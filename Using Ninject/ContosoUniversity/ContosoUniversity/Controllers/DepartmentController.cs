@@ -14,16 +14,13 @@ namespace ContosoUniversity.Controllers
 {
     public class DepartmentController : Controller
     {
-        public IRepository<Department> _departmentRepository;
-        public IRepository<Instructor> _instructorRepository;
-        public DepartmentController()
-        {
-
-        }
+        private readonly IRepository<Department> _departmentRepository;
+        private readonly IRepository<Instructor> _instructorRepository;
+        
         public DepartmentController(IRepository<Department> departmentRepository, IRepository<Instructor> instructorRepository )
         {
-            this._departmentRepository = departmentRepository;
-            this._instructorRepository = instructorRepository;
+            _departmentRepository = departmentRepository;
+            _instructorRepository = instructorRepository;
         }
 
         // GET: Department

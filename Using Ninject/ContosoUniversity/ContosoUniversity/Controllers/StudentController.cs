@@ -16,15 +16,10 @@ namespace ContosoUniversity.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchoolContext _context = new SchoolContext();
         private readonly IRepository<Student> _studentRepository;
-        public StudentController()
-        {
-
-        }
         public StudentController(IRepository<Student> studentRepository)
         {
-            this._studentRepository = studentRepository;
+            _studentRepository = studentRepository;
         }
 
         // GET: Student

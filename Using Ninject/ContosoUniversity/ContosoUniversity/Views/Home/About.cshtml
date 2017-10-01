@@ -4,17 +4,17 @@
 }
 <h2>Student Body Statistics</h2>
 
-<table>
+<table class="table table-bordered table-striped">
     <tr>
         <td>Enrollment Date</td>
-        <td></td>
+        
         <td>Total Student</td>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.EnrollmentDate)</td>
-            <td></td>
+            
             <td>@item.StudentCount</td>
         </tr>
         

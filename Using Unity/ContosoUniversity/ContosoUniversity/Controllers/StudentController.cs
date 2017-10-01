@@ -18,10 +18,6 @@ namespace ContosoUniversity.Controllers
     {
 
         private readonly IRepository<Student> _studentRepository;
-        public StudentController()
-        {
-
-        }
         public StudentController(IRepository<Student> studentRepository)
         {
             this._studentRepository = studentRepository;

@@ -14,7 +14,7 @@ namespace ContosoUniversity.Controllers
 {
     public class OfficeAssignmentController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         // GET: OfficeAssignment
         public async Task<ActionResult> Index()

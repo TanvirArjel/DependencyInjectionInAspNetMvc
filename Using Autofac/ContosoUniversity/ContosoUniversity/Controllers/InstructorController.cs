@@ -15,7 +15,7 @@ namespace ContosoUniversity.Controllers
 {
     public class InstructorController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         // GET: Instructor
         public ActionResult Index( int? id, int? courseID)
