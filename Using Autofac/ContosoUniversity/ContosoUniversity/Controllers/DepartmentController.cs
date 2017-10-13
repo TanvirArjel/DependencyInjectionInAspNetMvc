@@ -14,21 +14,18 @@ namespace ContosoUniversity.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IRepository<Department> _departmentRepository;
-        private readonly IRepository<Instructor> _instructorRepository;
-    
-        public DepartmentController(IRepository<Department> departmentRepository, IRepository<Instructor> instructorRepository )
+        private readonly IUnitOfWork _unitOfWork;
+        public DepartmentController(IUnitOfWork unitOfWork)
         {
-            _departmentRepository = departmentRepository;
-            _instructorRepository = instructorRepository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Department
         public ActionResult Index()
         {
             //var departments = db.Departments.Include(d => d.Administrator);
-            IQueryable<Department> departments = _departmentRepository.GelAllEntities();
-            //IEnumerable<Department> departments = _departmentRepository.GetAllEntity(/*includeProperties: "Administrator"*/);
+            IQueryable<Department> departments = _unitOfWork.Repository<Department>().GelAllEntities();
+            //IEnumerable<Department> departments = _unitOfWork.Repository<Department>().GetAllEntity(/*includeProperties: "Administrator"*/);
             return View(departments.ToList());
         }
 
@@ -39,7 +36,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = _departmentRepository.GetById(id);
+            Department department = _unitOfWork.Repository<Department>().GetById(id);
 
             //string query = "SELECT * FROM Department WHERE DepartmentID = @p0";
             //Department department = await db.Departments.SqlQuery(query, id).SingleOrDefaultAsync();
@@ -59,7 +56,7 @@ namespace ContosoUniversity.Controllers
 
         public void AdministratorDropDownList(object selectedAdministator = null)
         {
-            IEnumerable<Instructor> instructors = _instructorRepository.GelAllEntities(/*orderBy: q => q.OrderBy(x => x.FirstName)*/);
+            IEnumerable<Instructor> instructors = _unitOfWork.Repository<Instructor>().GelAllEntities(orderBy: q => q.OrderBy(x => x.FirstName));
             ViewBag.InstructorList = new SelectList(instructors, "ID", "FirstName", selectedAdministator);
         }
         
@@ -69,8 +66,8 @@ namespace ContosoUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                _departmentRepository.InsertEntity(department);
-                _departmentRepository.Save();
+                _unitOfWork.Repository<Department>().InsertEntity(department);
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             AdministratorDropDownList(department.InstructorID);
@@ -84,7 +81,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = _departmentRepository.GetById(id);
+            Department department = _unitOfWork.Repository<Department>().GetById(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -100,8 +97,8 @@ namespace ContosoUniversity.Controllers
         {
             if (ModelState.IsValid)
             {
-                _departmentRepository.UpdateEntity(department);
-                _departmentRepository.Save();
+                _unitOfWork.Repository<Department>().UpdateEntity(department);
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             AdministratorDropDownList(department.InstructorID);
@@ -115,7 +112,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = _departmentRepository.GetById(id);
+            Department department = _unitOfWork.Repository<Department>().GetById(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -128,14 +125,14 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _departmentRepository.DeleteEntity(id);
-            _departmentRepository.Save();
+            _unitOfWork.Repository<Department>().DeleteEntity(id);
+            _unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-           _departmentRepository.Dispose();
+           _unitOfWork.Repository<Department>().Dispose();
             base.Dispose(disposing);
         }
     }

@@ -18,8 +18,8 @@ namespace ContosoUniversity
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
-            //builder.RegisterType<Repository<Student>>().As<IRepository<Student>>();
             builder.RegisterType<SchoolContext>().InstancePerRequest();
 
             IContainer container = builder.Build();

@@ -69,3 +69,4 @@ D:\GitHub\DependencyInjectionInAspNetMvc\Using Autofac\ContosoUniversity\Contoso
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Autofac\ContosoUniversity\ContosoUniversity\obj\Debug\ContosoUniversity.csproj.CoreCompileInputs.cache
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Autofac\ContosoUniversity\ContosoUniversity\obj\Debug\ContosoUniversity.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Autofac\ContosoUniversity\ContosoUniversity\obj\Debug\ContosoUniversity.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Autofac\ContosoUniversity\ContosoUniversity\obj\Debug\ContosoUniversity.csprojResolveAssemblyReference.cache

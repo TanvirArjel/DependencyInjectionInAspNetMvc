@@ -15,6 +15,7 @@ namespace ContosoUniversity
         public static void ConfigureDependencyInjection()
         {
             UnityContainer container = new UnityContainer();
+            container.RegisterType(typeof(IUnitOfWork), typeof(UnitOfWork));
             container.RegisterType(typeof(IRepository<>), typeof(Repository<>));
             DependencyResolver.SetResolver(new UnityResolver(container));
         }
