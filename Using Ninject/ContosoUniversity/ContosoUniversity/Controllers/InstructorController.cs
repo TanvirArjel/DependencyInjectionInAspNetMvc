@@ -29,13 +29,13 @@ namespace ContosoUniversity.Controllers
             if (id != null)
             {
                 ViewBag.InstructorID = id;
-                viewModel.Courses = viewModel.Instructors.Where(i => i.ID == id).Single().Courses;
+                viewModel.Courses = viewModel.Instructors.Single(i => i.ID == id).Courses;
             }
 
             if (courseID != null)
             {
                 ViewBag.CourseID = courseID;
-                viewModel.Enrollments = viewModel.Courses.Where(x => x.CourseID == courseID).Single().Enrollments;
+                viewModel.Enrollments = viewModel.Courses.Single(x => x.CourseID == courseID).Enrollments;
             }
             return View(viewModel);
         }
@@ -137,9 +137,8 @@ namespace ContosoUniversity.Controllers
             }
             var instructorToUpdate = db.Instructors
                                        .Include(i => i.OfficeAssignment)
-                                       .Include(i => i.Courses)
-                                       .Where(i => i.ID == id) //ID = InstructorID
-                                       .Single();
+                                       .Include(i => i.Courses) //ID = InstructorID
+                                       .Single(i => i.ID == id);
 
             if (TryUpdateModel(instructorToUpdate, "",
                new string[] { "FirstName", "LastName", "HireDate", "OfficeAssignment" }))
@@ -220,7 +219,7 @@ namespace ContosoUniversity.Controllers
                                           .SingleAsync();
             db.Instructors.Remove(instructor);
 
-            var department = db.Departments.Where(d => d.InstructorID == id).SingleOrDefault();
+            var department = db.Departments.SingleOrDefault(d => d.InstructorID == id);
             if (department != null)
             {
                 department.InstructorID = null;

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace ContosoUniversity.DAL
 {
-    public class SchoolContext : DbContext
+    public class SchoolContext : DbContext, IDbContext
     {
         public SchoolContext() : base("SchoolContext")
         {
@@ -37,5 +37,16 @@ namespace ContosoUniversity.DAL
             //    .MapRightKey("CourseID")
             //    .ToTable("StudentCourse"));
         }
+
+        public IDbSet<T> Set<T>() where T : class
+        {
+            return base.Set<T>();
+        }
+
+        //public override int SaveChanges()
+        //{
+        //    this.ApplyStateChanges();
+        //    base.SaveChanges();
+        //}
     }
 }

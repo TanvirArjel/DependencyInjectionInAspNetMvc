@@ -1,31 +1,58 @@
 ﻿using ContosoUniversity.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Ninject;
 
 namespace ContosoUniversity.DAL
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly SchoolContext _dbContext = new SchoolContext();
-        private Repository<Course> _courseRepository;
-        private Repository<Department> _departmentRepository;
-        private Repository<Student> _studentRepository;
-        private Repository<Instructor> _instructorRepository;
+        private readonly IDbContext _dbContext;
+        private Hashtable _repositories;
+        public UnitOfWork(IDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-        public Repository<Course> CourseRepository => _courseRepository ?? (_courseRepository = new Repository<Course>(_dbContext));
-        public Repository<Department> DepartmentRepository => _departmentRepository ?? (_departmentRepository = new Repository<Department>(_dbContext));
-        public Repository<Student> StudentRepository => _studentRepository ?? (_studentRepository = new Repository<Student>(_dbContext));
-        public Repository<Instructor> InstructorRepository => _instructorRepository ?? (_instructorRepository = new Repository<Instructor>(_dbContext));
+        //public UnitOfWork()
+        //{
+        //    _dbContext = new SchoolContext();
+        //}
         
+
+        public IRepository<T> Repository<T>() where T : class
+        {
+            if (_repositories == null)
+                _repositories = new Hashtable();
+
+            var type = typeof(T).Name;
+
+            if (!_repositories.ContainsKey(type))
+            {
+                var repositoryType = typeof(Repository<>);
+
+                var repositoryInstance =
+                    Activator.CreateInstance(repositoryType
+                        .MakeGenericType(typeof(T)), _dbContext);
+
+                _repositories.Add(type, repositoryInstance);
+            }
+
+            return (IRepository<T>)_repositories[type];
+        }
+
         public void Save()
         {
             _dbContext.SaveChanges();
         }
 
+
         private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
+        public virtual void Dispose(bool disposing)
         {
             if (!disposed)
             {

@@ -16,10 +16,11 @@ namespace ContosoUniversity.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IRepository<Student> _studentRepository;
-        public StudentController(IRepository<Student> studentRepository)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public StudentController(IUnitOfWork unitOfWork)
         {
-            _studentRepository = studentRepository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Student
@@ -28,7 +29,7 @@ namespace ContosoUniversity.Controllers
             ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : ""; // Here the blank string means Name_Asc which is Default Sort
             ViewBag.DateSortParam = sortOrder == "Date_Asc" ? "Date_Desc" : "Date_Asc";
 
-            IQueryable<Student> students = _studentRepository.GelAllEntities();
+            IQueryable<Student> students = _unitOfWork.Repository<Student>().GelAllEntities();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -60,7 +61,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = _studentRepository.GetById(id);
+            Student student = _unitOfWork.Repository<Student>().GetById(id);
 
             if (student == null)
             {
@@ -84,8 +85,8 @@ namespace ContosoUniversity.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _studentRepository.InsertEntity(student);
-                    _studentRepository.Save();
+                    _unitOfWork.Repository<Student>().InsertEntity(student);
+                    _unitOfWork.Save();
                     return RedirectToAction("Index");
                 }
             }
@@ -104,7 +105,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = _studentRepository.GetById(id);
+            Student student = _unitOfWork.Repository<Student>().GetById(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -121,12 +122,12 @@ namespace ContosoUniversity.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Student studentToUpdate = _studentRepository.GetById(id);
+            Student studentToUpdate = _unitOfWork.Repository<Student>().GetById(id);
             if (TryUpdateModel(studentToUpdate, "", new string[] { "FirstName", "LastName", "EnrollmentDate" }))
             {
                 try
                 {
-                    _studentRepository.Save();
+                    _unitOfWork.Save();
                     return RedirectToAction("Index");
                 }
                 catch (DataException)
@@ -148,7 +149,7 @@ namespace ContosoUniversity.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            Student student = _studentRepository.GetById(id);
+            Student student = _unitOfWork.Repository<Student>().GetById(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -163,8 +164,8 @@ namespace ContosoUniversity.Controllers
         {
             try
             {
-                _studentRepository.DeleteEntity(id);
-                _studentRepository.Save();
+                _unitOfWork.Repository<Student>().DeleteEntity(id);
+                _unitOfWork.Save();
             }
             catch (Exception)
             {
@@ -176,7 +177,7 @@ namespace ContosoUniversity.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _studentRepository.Dispose();
+            _unitOfWork.Dispose();
             base.Dispose(disposing);
         }
 

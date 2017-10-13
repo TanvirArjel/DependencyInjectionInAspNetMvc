@@ -8,93 +8,70 @@ using System.Web;
 
 namespace ContosoUniversity.DAL
 {
-    public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        internal SchoolContext context;
-        internal DbSet<TEntity> dbSet;
+        private readonly IDbContext _dbContext;
+        private readonly IDbSet<TEntity> _dbSet;
 
-        public Repository(SchoolContext dbContext)
+        public Repository(IDbContext dbContext)
         {
-            context = dbContext;
-            dbSet = context.Set<TEntity>();
+            _dbContext = dbContext;
+            _dbSet = _dbContext.Set<TEntity>();
         }
 
+        public IQueryable<TEntity> GelAllEntities(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = ""
+        )
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
 
+            foreach (
+                var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+            if (orderBy != null)
+            {
+                return orderBy(query);
+            }
+            else
+            {
+                return query;
+            }
+        }
 
        
 
-        //public IQueryable<TEntity> GelAllEntities(
-        //    Expression<Func<TEntity, bool>> filter = null,
-        //    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        //    string includeProperties = ""
-        //)
-        //{
-        //    IQueryable<TEntity> query = dbSet;
-        //    if (filter != null)
-        //    {
-        //        query = query.Where(filter);
-        //    }
-
-        //    foreach (
-        //        var includeProperty in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
-        //    {
-        //        query = query.Include(includeProperty);
-        //    }
-        //    if (orderBy != null)
-        //    {
-        //        return orderBy(query);
-        //    }
-        //    else
-        //    {
-        //        return query;
-        //    }
-        //}
-        public IQueryable<TEntity> GelAllEntities()
-        {
-            return dbSet;
-        }
         public TEntity GetById(object id)
         {
-            return dbSet.Find(id);
+            return _dbSet.Find(id);
         }
 
         public void InsertEntity(TEntity entity)
         {
-            dbSet.Add(entity);
+            _dbSet.Add(entity);
         }
 
         public void UpdateEntity(TEntity entity)
         {
-            dbSet.Attach(entity);
-            context.Entry(entity).State = EntityState.Modified;
+            _dbSet.Attach(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
         public void DeleteEntity(object id)
         {
-            TEntity entity = dbSet.Find(id);
-            dbSet.Remove(entity);
-
-        }
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
+            TEntity entity = _dbSet.Find(id);
+            if (entity != null)
             {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
+                _dbSet.Remove(entity);
             }
-            this.disposed = true;
-        }
+            
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
     }

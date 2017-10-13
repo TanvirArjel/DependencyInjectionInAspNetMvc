@@ -1,10 +1,10 @@
+using System.Data.Entity;
 using ContosoUniversity.DAL;
-using ContosoUniversity.Models;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ContosoUniversity.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ContosoUniversity.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ContosoUniversity.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ContosoUniversity.App_Start.NinjectWebCommon), "Stop")]
 
-namespace ContosoUniversity
+namespace ContosoUniversity.App_Start
 {
     using System;
     using System.Web;
@@ -64,8 +64,11 @@ namespace ContosoUniversity
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IRepository<Student>>().To<Repository<Student>>();
+            kernel.Bind(typeof(IDbContext)).To(typeof(SchoolContext));
+            kernel.Bind(typeof(IUnitOfWork)).To(typeof(UnitOfWork));
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
+            kernel.Bind(typeof(SchoolContext)).To(typeof(SchoolContext));
+            kernel.Bind<SchoolContext>().ToConstructor(_dbContext=> new SchoolContext());
         }        
     }
 }
