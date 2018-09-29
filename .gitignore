@@ -18,3 +18,5 @@
 *.dll
 *.lib
 *.sbr
+/Using Ninject/ContosoUniversity/.vs/ContosoUniversity/v15/Server/sqlite3
+/Using Autofac/ContosoUniversity/.vs/config

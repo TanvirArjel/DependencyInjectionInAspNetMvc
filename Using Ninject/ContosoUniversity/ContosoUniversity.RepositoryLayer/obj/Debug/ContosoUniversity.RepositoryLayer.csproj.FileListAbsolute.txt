@@ -1,0 +1,17 @@
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.RepositoryLayer.dll.config
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.RepositoryLayer.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.RepositoryLayer.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.DataAccessLayer.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\EntityFramework.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.Models.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.DataAccessLayer.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.DataAccessLayer.dll.config
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\EntityFramework.xml
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\bin\Debug\ContosoUniversity.Models.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\obj\Debug\ContosoUniversity.RepositoryLayer.csprojAssemblyReference.cache
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\obj\Debug\ContosoUniversity.RepositoryLayer.csproj.CoreCompileInputs.cache
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\obj\Debug\ContosoUniversity.RepositoryLayer.csproj.CopyComplete
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\obj\Debug\ContosoUniversity.RepositoryLayer.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.RepositoryLayer\obj\Debug\ContosoUniversity.RepositoryLayer.pdb
