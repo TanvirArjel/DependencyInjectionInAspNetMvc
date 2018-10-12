@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using ContosoUniversity.RepositoryLayer.UnitOfWork;
 
@@ -26,13 +27,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Department/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = _unitOfWork.Repository<Department>().GetById(id);
+            Department department = await _unitOfWork.Repository<Department>().GetByIdAsync(id);
 
             //string query = "SELECT * FROM Department WHERE DepartmentID = @p0";
             //Department department = await db.Departments.SqlQuery(query, id).SingleOrDefaultAsync();
@@ -71,13 +72,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Department/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = _unitOfWork.Repository<Department>().GetById(id);
+            Department department = await _unitOfWork.Repository<Department>().GetByIdAsync(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -102,13 +103,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Department/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = _unitOfWork.Repository<Department>().GetById(id);
+            Department department = await _unitOfWork.Repository<Department>().GetByIdAsync(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -124,12 +125,6 @@ namespace ContosoUniversity.Web.Controllers
             _unitOfWork.Repository<Department>().DeleteEntity(id);
             _unitOfWork.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-           _unitOfWork.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

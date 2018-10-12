@@ -11,7 +11,10 @@ namespace ContosoUniversity.RepositoryLayer.UnitOfWork
     {
         IRepository<T> Repository<T>() where T : class;
         Task SaveChangesAsync();
-        void Dispose(bool disposing);
-        void Dispose();  
+
+        // Commenting this because there is no need of explicit Disposing while using dependency injection because this the duty of DI container
+        // to dispose the context
+        //void Dispose(bool disposing);
+        //void Dispose();  
     }
 }

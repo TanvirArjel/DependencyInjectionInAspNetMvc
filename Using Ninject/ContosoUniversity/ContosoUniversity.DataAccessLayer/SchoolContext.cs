@@ -1,10 +1,6 @@
 ﻿using ContosoUniversity.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
 
 namespace ContosoUniversity.DataAccessLayer
 {
@@ -37,16 +33,5 @@ namespace ContosoUniversity.DataAccessLayer
             //    .MapRightKey("CourseID")
             //    .ToTable("StudentCourse"));
         }
-
-        public IDbSet<T> Set<T>() where T : class
-        {
-            return base.Set<T>();
-        }
-
-        //public override int SaveChanges()
-        //{
-        //    this.ApplyStateChanges();
-        //    base.SaveChanges();
-        //}
     }
 }

@@ -1,9 +1,9 @@
-D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.csprojAssemblyReference.cache
-D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.csproj.CoreCompileInputs.cache
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\bin\Release\ContosoUniversity.ViewModels.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\bin\Release\ContosoUniversity.ViewModels.pdb
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\bin\Release\ContosoUniversity.Models.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\bin\Release\ContosoUniversity.Models.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.csprojAssemblyReference.cache
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.csproj.CoreCompileInputs.cache
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.csproj.CopyComplete
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.ViewModels\obj\Release\ContosoUniversity.ViewModels.pdb

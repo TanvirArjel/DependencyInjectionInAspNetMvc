@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace ContosoUniversity.Web.Controllers
@@ -29,13 +30,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Course/Details/5
-        public  ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = _unitOfWork.Repository<Course>().GetById(id);
+            Course course = await _unitOfWork.Repository<Course>().GetByIdAsync(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -73,13 +74,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Course/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = _unitOfWork.Repository<Course>().GetById(id);
+            Course course = await _unitOfWork.Repository<Course>().GetByIdAsync(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -91,18 +92,18 @@ namespace ContosoUniversity.Web.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id)
+        public async Task<ActionResult> EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var courseToUpdate = _unitOfWork.Repository<Course>().GetById(id);
+            var courseToUpdate = await _unitOfWork.Repository<Course>().GetByIdAsync(id);
             if (TryUpdateModel(courseToUpdate, "", new string[] { "CourseID", "CourseTitle", "Credits", "DepartmentID" }))
             {
                 try
                 {
-                    _unitOfWork.SaveChangesAsync();
+                    await _unitOfWork.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException)
@@ -120,13 +121,13 @@ namespace ContosoUniversity.Web.Controllers
             ViewBag.DepartmentID = new SelectList(departmentList, "DepartmentID", "DepartmentName", selectedDeaparment);
         }
         // GET: Course/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = _unitOfWork.Repository<Course>().GetById(id);
+            Course course = await _unitOfWork.Repository<Course>().GetByIdAsync(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -144,10 +145,6 @@ namespace ContosoUniversity.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            _unitOfWork.Dispose();
-            base.Dispose(disposing);
-        }
+        
     }
 }

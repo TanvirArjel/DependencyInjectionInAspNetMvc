@@ -7,6 +7,7 @@ D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\Contoso
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.Models.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.RepositoryLayer.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.ServiceLayer.dll
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.ViewModels.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\EntityFramework.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\EntityFramework.SqlServer.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -37,6 +38,7 @@ D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\Contoso
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.RepositoryLayer.pdb
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.RepositoryLayer.dll.config
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.ServiceLayer.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.ViewModels.pdb
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\Antlr3.Runtime.pdb
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\EntityFramework.xml
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\EntityFramework.SqlServer.xml
@@ -64,5 +66,3 @@ D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\Contoso
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\obj\Release\ContosoUniversity.Web.csproj.CopyComplete
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\obj\Release\ContosoUniversity.Web.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\obj\Release\ContosoUniversity.Web.pdb
-D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.ViewModels.dll
-D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Web\bin\ContosoUniversity.ViewModels.pdb

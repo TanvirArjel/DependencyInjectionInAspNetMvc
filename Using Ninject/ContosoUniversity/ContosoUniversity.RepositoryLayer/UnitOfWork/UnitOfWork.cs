@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.RepositoryLayer.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly SchoolContext _dbContext;
         private Hashtable _repositories;
@@ -15,12 +15,7 @@ namespace ContosoUniversity.RepositoryLayer.UnitOfWork
             _dbContext = dbContext;
         }
 
-        //public UnitOfWork()
-        //{
-        //    _dbContext = new SchoolContext();
-        //}
-        
-
+      
         public IRepository<T> Repository<T>() where T : class
         {
             if (_repositories == null)
@@ -47,21 +42,24 @@ namespace ContosoUniversity.RepositoryLayer.UnitOfWork
             await _dbContext.SaveChangesAsync();
         }
 
-        private bool disposed = false;
-        public virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
-            }
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        // Commenting this because there is no need of explicit Disposing while using dependency injection because this the duty of DI container
+        // to dispose the context
+
+        //private bool disposed = false;
+        //public virtual void Dispose(bool disposing)
+        //{
+        //    if (!disposed)
+        //    {
+        //        if (disposing)
+        //        {
+        //            _dbContext.Dispose();
+        //        }
+        //    }
+        //}
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }

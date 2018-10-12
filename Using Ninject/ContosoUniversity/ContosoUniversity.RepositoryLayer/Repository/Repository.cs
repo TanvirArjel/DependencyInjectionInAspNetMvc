@@ -3,13 +3,14 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.RepositoryLayer.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly SchoolContext _dbContext;
-        private readonly IDbSet<TEntity> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
         public Repository(SchoolContext dbContext)
         {
@@ -17,11 +18,9 @@ namespace ContosoUniversity.RepositoryLayer.Repository
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public IQueryable<TEntity> GelAllEntities(
-            Expression<Func<TEntity, bool>> filter = null,
+        public IQueryable<TEntity> GelAllEntities(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = ""
-        )
+            string includeProperties = "")
         {
             IQueryable<TEntity> query = _dbSet;
             if (filter != null)
@@ -38,17 +37,14 @@ namespace ContosoUniversity.RepositoryLayer.Repository
             {
                 return orderBy(query);
             }
-            else
-            {
-                return query;
-            }
+
+            return query;
+
         }
 
-       
-
-        public TEntity GetById(object id)
+        public async Task<TEntity> GetByIdAsync(object id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync();
         }
 
         public void InsertEntity(TEntity entity)
@@ -56,10 +52,13 @@ namespace ContosoUniversity.RepositoryLayer.Repository
             _dbSet.Add(entity);
         }
 
-        public void UpdateEntity(TEntity entity)
+        public void UpdateEntity(TEntity entity, params string[] excludeProperties)
         {
-            _dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
+            foreach (string excludeProperty in excludeProperties)
+            {
+                _dbContext.Entry(entity).Property(excludeProperty).IsModified = false;
+            }
         }
         public void DeleteEntity(object id)
         {
@@ -68,8 +67,6 @@ namespace ContosoUniversity.RepositoryLayer.Repository
             {
                 _dbSet.Remove(entity);
             }
-            
-
         }
 
     }

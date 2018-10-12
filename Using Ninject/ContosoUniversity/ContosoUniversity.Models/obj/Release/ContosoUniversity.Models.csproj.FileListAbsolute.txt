@@ -1,5 +1,6 @@
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Models\bin\Release\ContosoUniversity.Models.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Models\bin\Release\ContosoUniversity.Models.pdb
+D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Models\obj\Release\ContosoUniversity.Models.csprojAssemblyReference.cache
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Models\obj\Release\ContosoUniversity.Models.csproj.CoreCompileInputs.cache
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Models\obj\Release\ContosoUniversity.Models.dll
 D:\GitHub\DependencyInjectionInAspNetMvc\Using Ninject\ContosoUniversity\ContosoUniversity.Models\obj\Release\ContosoUniversity.Models.pdb

@@ -54,13 +54,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Student/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = _unitOfWork.Repository<Student>().GetById(id);
+            Student student = await _unitOfWork.Repository<Student>().GetByIdAsync(id);
 
             if (student == null)
             {
@@ -97,13 +97,13 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Student/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = _unitOfWork.Repository<Student>().GetById(id);
+            Student student = await _unitOfWork.Repository<Student>().GetByIdAsync(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -113,19 +113,19 @@ namespace ContosoUniversity.Web.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id)
+        public async Task<ActionResult> EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Student studentToUpdate = _unitOfWork.Repository<Student>().GetById(id);
+            Student studentToUpdate = await _unitOfWork.Repository<Student>().GetByIdAsync(id);
             if (TryUpdateModel(studentToUpdate, "", new string[] { "FirstName", "LastName", "EnrollmentDate" }))
             {
                 try
                 {
-                    _unitOfWork.SaveChangesAsync();
+                    await _unitOfWork.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
                 catch (DataException)
@@ -137,7 +137,7 @@ namespace ContosoUniversity.Web.Controllers
         }
 
         // GET: Student/Delete/5
-        public  ActionResult Delete(int? id, bool? saveChangesError = false)
+        public async Task<ActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -147,7 +147,7 @@ namespace ContosoUniversity.Web.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            Student student = _unitOfWork.Repository<Student>().GetById(id);
+            Student student = await _unitOfWork.Repository<Student>().GetByIdAsync(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -173,11 +173,7 @@ namespace ContosoUniversity.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            _unitOfWork.Dispose();
-            base.Dispose(disposing);
-        }
+        
 
     }
 }
