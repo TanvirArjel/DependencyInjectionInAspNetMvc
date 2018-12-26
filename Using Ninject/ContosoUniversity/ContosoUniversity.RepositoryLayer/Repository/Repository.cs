@@ -18,9 +18,9 @@ namespace ContosoUniversity.RepositoryLayer.Repository
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public IQueryable<TEntity> GelAllEntities(Expression<Func<TEntity, bool>> filter = null,
+        public IQueryable<TEntity> GetAllEntities(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+            /*string includeProperties = "",*/ params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = _dbSet;
             if (filter != null)
@@ -28,11 +28,17 @@ namespace ContosoUniversity.RepositoryLayer.Repository
                 query = query.Where(filter);
             }
 
-            foreach (
-                var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (Expression<Func<TEntity, object>> include in includes)
             {
-                query = query.Include(includeProperty);
+                query = query.Include(include);
             }
+
+            //foreach (
+            //    var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            //{
+            //    query = query.Include(includeProperty);
+            //}
+
             if (orderBy != null)
             {
                 return orderBy(query);

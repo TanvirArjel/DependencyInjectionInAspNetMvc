@@ -21,7 +21,7 @@ namespace ContosoUniversity.Web.Controllers
         public ActionResult Index()
         {
             //var departments = db.Departments.Include(d => d.Administrator);
-            IQueryable<Department> departments = _unitOfWork.Repository<Department>().GelAllEntities();
+            IQueryable<Department> departments = _unitOfWork.Repository<Department>().GetAllEntities();
             //IEnumerable<Department> departments = _unitOfWork.Repository<Department>().GetAllEntity(/*includeProperties: "Administrator"*/);
             return View(departments.ToList());
         }
@@ -53,7 +53,7 @@ namespace ContosoUniversity.Web.Controllers
 
         public void AdministratorDropDownList(object selectedAdministator = null)
         {
-            IEnumerable<Instructor> instructors = _unitOfWork.Repository<Instructor>().GelAllEntities(orderBy: q => q.OrderBy(x => x.FirstName));
+            IEnumerable<Instructor> instructors = _unitOfWork.Repository<Instructor>().GetAllEntities(orderBy: q => q.OrderBy(x => x.FirstName));
             ViewBag.InstructorList = new SelectList(instructors, "ID", "FirstName", selectedAdministator);
         }
         

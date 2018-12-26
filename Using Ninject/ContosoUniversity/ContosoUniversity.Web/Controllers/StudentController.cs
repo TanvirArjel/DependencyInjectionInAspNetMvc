@@ -28,7 +28,7 @@ namespace ContosoUniversity.Web.Controllers
             ViewBag.NameSortParam = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : ""; // Here the blank string means Name_Asc which is Default Sort
             ViewBag.DateSortParam = sortOrder == "Date_Asc" ? "Date_Desc" : "Date_Asc";
 
-            IQueryable<Student> students = _unitOfWork.Repository<Student>().GelAllEntities();
+            IQueryable<Student> students = _unitOfWork.Repository<Student>().GetAllEntities();
 
             if (!String.IsNullOrEmpty(searchString))
             {

@@ -25,7 +25,7 @@ namespace ContosoUniversity.Web.Controllers
 
             DepartmentDropDownList(selectedDepartment);
             //IEnumerable<Course> courses = unitOfWork.Repository<Course>().GetAllEntity(c => !selectedDepartment.HasValue || c.DepartmentID == selectedDepartment, includeProperties: "Department");
-            IEnumerable<Course> courses = _unitOfWork.Repository<Course>().GelAllEntities().ToList();
+            IEnumerable<Course> courses = _unitOfWork.Repository<Course>().GetAllEntities().ToList();
             return View(courses);
         }
 
@@ -117,7 +117,7 @@ namespace ContosoUniversity.Web.Controllers
         }
         private void DepartmentDropDownList(object selectedDeaparment = null)
         {
-            IEnumerable<Department> departmentList = _unitOfWork.Repository<Department>().GelAllEntities(orderBy: q => q.OrderBy(d => d.DepartmentName));
+            IEnumerable<Department> departmentList = _unitOfWork.Repository<Department>().GetAllEntities(orderBy: q => q.OrderBy(d => d.DepartmentName));
             ViewBag.DepartmentID = new SelectList(departmentList, "DepartmentID", "DepartmentName", selectedDeaparment);
         }
         // GET: Course/Delete/5
